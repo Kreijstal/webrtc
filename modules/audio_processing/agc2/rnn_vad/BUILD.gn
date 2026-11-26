@@ -114,7 +114,7 @@ rtc_source_set("vector_math") {
 if (current_cpu == "x86" || current_cpu == "x64") {
   rtc_library("vector_math_avx2") {
     sources = [ "vector_math_avx2.cc" ]
-    if (is_win) {
+    if (is_msvc) {
       cflags = [ "/arch:AVX2" ]
     } else {
       cflags = [

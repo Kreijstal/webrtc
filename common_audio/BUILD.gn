@@ -237,7 +237,7 @@ if (current_cpu == "x86" || current_cpu == "x64") {
       "resampler/sinc_resampler_sse.cc",
     ]
 
-    if (is_posix || is_fuchsia) {
+    if (is_posix || is_fuchsia || is_mingw) {
       cflags = [ "-msse2" ]
     }
 
@@ -256,7 +256,7 @@ if (current_cpu == "x86" || current_cpu == "x64") {
       "resampler/sinc_resampler_avx2.cc",
     ]
 
-    if (is_win) {
+    if (is_msvc) {
       cflags = [ "/arch:AVX2" ]
     } else {
       cflags = [

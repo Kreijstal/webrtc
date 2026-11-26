@@ -18,7 +18,7 @@
 #include "rtc_base/checks.h"
 #include "rtc_base/string_utils.h"
 
-#if !defined(__clang__) && _MSC_FULL_VER < 191125507
+#if !defined(__clang__) && defined(_MSC_VER) && _MSC_FULL_VER < 191125507
 #error VS 2017 Update 3.2 or higher is required
 #endif
 

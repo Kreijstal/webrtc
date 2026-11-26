@@ -22,6 +22,7 @@
 #endif
 
 #if defined(WEBRTC_WIN)
+#include "build/build_config.h"
 #include <iterator>
 
 // The SetThreadDescription API was brought in version 1607 of Windows 10.

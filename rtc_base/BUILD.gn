@@ -660,7 +660,11 @@ rtc_library("timeutils") {
 
   libs = []
   if (is_win) {
-    libs += [ "winmm.lib" ]
+    if (is_mingw) {
+      libs += [ "winmm" ]
+    } else {
+      libs += [ "winmm.lib" ]
+    }
     deps += [ ":win32" ]
   }
 }
@@ -1215,11 +1219,19 @@ if (is_win) {
       ":stringutils",
     ]
 
-    libs = [
-      "crypt32.lib",
-      "iphlpapi.lib",
-      "secur32.lib",
-    ]
+    if (is_mingw) {
+      libs = [
+        "crypt32",
+        "iphlpapi",
+        "secur32",
+      ]
+    } else {
+      libs = [
+        "crypt32",
+        "iphlpapi.lib",
+        "secur32.lib",
+      ]
+    }
 
     defines = [ "_CRT_NONSTDC_NO_DEPRECATE" ]
   }

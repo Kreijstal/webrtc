@@ -855,11 +855,19 @@ rtc_library("desktop_capture") {
       "window_finder_win.cc",
       "window_finder_win.h",
     ]
-    libs = [
-      "d3d11.lib",
-      "dxgi.lib",
-      "shcore.lib",
-    ]
+    if (is_mingw) {
+      libs = [
+        "d3d11",
+        "dxgi",
+        "shcore",
+      ]
+    } else {
+      libs = [
+        "d3d11",
+        "dxgi",
+        "shcore.lib",
+      ]
+    }
     deps += [
       "../../rtc_base:threading",
       "../../rtc_base:win32",
@@ -1026,7 +1034,7 @@ if (use_desktop_capture_differ_sse2) {
       "differ_vector_sse2.h",
     ]
 
-    if (is_posix || is_fuchsia) {
+    if (is_posix || is_fuchsia || is_mingw) {
       cflags = [ "-msse2" ]
     }
   }

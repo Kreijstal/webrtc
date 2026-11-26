@@ -446,7 +446,7 @@ config("common_config") {
       ]
     }
 
-    if (is_win && !is_clang) {
+    if (is_msvc && !is_clang) {
       # MSVC warning suppressions (needed to use Abseil).
       # TODO(bugs.webrtc.org/9274): Remove these warnings as soon as MSVC allows
       # external headers warning suppression (or fix them upstream).
@@ -510,8 +510,8 @@ config("common_config") {
 
   if (!build_with_chromium && rtc_win_undef_unicode) {
     cflags += [
-      "/UUNICODE",
-      "/U_UNICODE",
+      "-UUNICODE",
+      "-U_UNICODE",
     ]
   }
 
