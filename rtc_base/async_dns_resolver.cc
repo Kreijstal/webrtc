@@ -38,6 +38,11 @@
 #include <dispatch/dispatch.h>
 #endif
 
+#if defined(WEBRTC_WIN) && defined(__MINGW32__)
+// ws2_32 exports it; mingw-w64's ws2tcpip.h doesn't declare it.
+extern "C" WINSOCK_API_LINKAGE INT WSAAPI GetAddrInfoExCancel(LPHANDLE handle);
+#endif
+
 namespace webrtc {
 namespace {
 #if defined(WEBRTC_WIN)
